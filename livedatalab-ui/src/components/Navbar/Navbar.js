@@ -25,7 +25,9 @@ function Navbar() {
 				<Typography variant="h6" style={{ flexGrow: 1 }}>
 					LiveDataLab
 				</Typography>
-				<Button color="inherit">Home</Button>
+				<Button color="inherit" to="/home">
+					Home
+				</Button>
 				<Button color="inherit">Log Out</Button>
 			</Toolbar>
 		</AppBar>
