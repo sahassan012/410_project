@@ -9,8 +9,7 @@ function SecondaryNav({ setActiveSection }) {
 	const theme = useTheme();
 	const useStyles = makeStyles({
 		root: {
-			width: "100%",
-			maxWidth: 360,
+			width: 320,
 			backgroundColor: theme.palette.background.paper,
 		},
 		listItem: {
@@ -21,7 +20,6 @@ function SecondaryNav({ setActiveSection }) {
 				borderRadius: theme.shape.borderRadius,
 			},
 		},
-		// Add other styles as needed
 	});
 	const classes = useStyles();
 	const handleListItemClick = (section) => {
@@ -59,7 +57,14 @@ function SecondaryNav({ setActiveSection }) {
 			<ListItem
 				button
 				className={classes.listItem}
-				onClick={() => handleListItemClick("manage-linked-accs")}
+				onClick={() => handleListItemClick("submissions")}
+			>
+				<ListItemText primary="Submissions" />
+			</ListItem>
+			<ListItem
+				button
+				className={classes.listItem}
+				onClick={() => handleListItemClick("manage linked accounts")}
 			>
 				<ListItemText primary="Manage Linked Accounts" />
 			</ListItem>
