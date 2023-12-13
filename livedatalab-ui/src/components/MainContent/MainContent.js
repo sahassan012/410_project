@@ -244,14 +244,24 @@ function MainContent({ activeSection }) {
 				<GenModal
 					open={modalOpen}
 					handleClose={() => setModalOpen(false)}
-					content={<ProjectsModalContent onSubmit={handleProjectSubmit} />}
+					content={
+						<ProjectsModalContent
+							onSubmit={handleProjectSubmit}
+							onCancel={() => setModalOpen(false)}
+						/>
+					}
 				/>
 			)}
 			{activeSection === "courses" && (
 				<GenModal
 					open={modalOpen}
 					handleClose={() => setModalOpen(false)}
-					content={<CourseModalContent onSubmit={handleCourseSubmit} />}
+					content={
+						<CourseModalContent
+							onSubmit={handleCourseSubmit}
+							onCancel={() => setModalOpen(false)}
+						/>
+					}
 				/>
 			)}
 			{activeSection === "manage linked accounts" && (
@@ -259,7 +269,10 @@ function MainContent({ activeSection }) {
 					open={modalOpen}
 					handleClose={() => setModalOpen(false)}
 					content={
-						<LinkedAccountsModalContent onSubmit={handleLinkedAccountsSubmit} />
+						<LinkedAccountsModalContent
+							onSubmit={handleLinkedAccountsSubmit}
+							onCancel={() => setModalOpen(false)}
+						/>
 					}
 				/>
 			)}
@@ -268,7 +281,10 @@ function MainContent({ activeSection }) {
 					open={modalOpen}
 					handleClose={() => setModalOpen(false)}
 					content={
-						<LeaderboardModalContent onSubmit={handleLeaderboardSubmit} />
+						<LeaderboardModalContent
+							onSubmit={handleLeaderboardSubmit}
+							onCancel={() => setModalOpen(false)}
+						/>
 					}
 				/>
 			)}

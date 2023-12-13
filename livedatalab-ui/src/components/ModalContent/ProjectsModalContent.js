@@ -12,7 +12,7 @@ import {
 	Box,
 } from "@mui/material";
 
-function ProjectModalContent({ onSubmit }) {
+function ProjectModalContent({ onSubmit, onCancel }) {
 	const [projectData, setProjectData] = useState({
 		name: "",
 		description: "",
@@ -101,9 +101,14 @@ function ProjectModalContent({ onSubmit }) {
 				label="Auto-Recommend Learning Materials"
 				sx={{ mb: 2 }}
 			/>
-			<Button type="submit" variant="contained" color="primary">
-				Create
-			</Button>
+			<Box display="flex" justifyContent="space-between">
+				<Button variant="outlined" color="secondary" onClick={onCancel}>
+					Cancel
+				</Button>
+				<Button type="submit" variant="contained" color="primary">
+					Create
+				</Button>
+			</Box>
 		</Box>
 	);
 }

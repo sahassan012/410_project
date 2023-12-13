@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Typography, TextField, Button, Box } from "@mui/material";
 
-function LeaderboardModalContent({ onSubmit }) {
+function LeaderboardModalContent({ onSubmit, onCancel }) {
 	const [leaderboardData, setLeaderboardData] = useState({
 		description: "",
 		maxScore: "",
@@ -36,9 +36,14 @@ function LeaderboardModalContent({ onSubmit }) {
 				onChange={handleChange}
 				sx={{ mb: 2 }}
 			/>
-			<Button type="submit" variant="contained" color="primary">
-				Create
-			</Button>
+			<Box display="flex" justifyContent="space-between">
+				<Button variant="outlined" color="secondary" onClick={onCancel}>
+					Cancel
+				</Button>
+				<Button type="submit" variant="contained" color="primary">
+					Create
+				</Button>
+			</Box>
 		</Box>
 	);
 }

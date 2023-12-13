@@ -8,7 +8,7 @@ import {
 	Box,
 } from "@mui/material";
 
-function CourseModalContent({ onSubmit }) {
+function CourseModalContent({ onSubmit, onCancel }) {
 	const [courseData, setCourseData] = useState({
 		name: "",
 		description: "",
@@ -61,10 +61,15 @@ function CourseModalContent({ onSubmit }) {
 				}
 				label="Make Course Available to Public"
 				sx={{ mb: 2 }}
-			/>
-			<Button type="submit" variant="contained" color="primary">
-				Create
-			</Button>
+			/>{" "}
+			<Box display="flex" justifyContent="space-between">
+				<Button variant="outlined" color="secondary" onClick={onCancel}>
+					Cancel
+				</Button>
+				<Button type="submit" variant="contained" color="primary">
+					Create
+				</Button>
+			</Box>
 		</Box>
 	);
 }
