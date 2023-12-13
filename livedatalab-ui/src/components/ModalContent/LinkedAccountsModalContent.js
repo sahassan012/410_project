@@ -3,8 +3,8 @@ import { Typography, TextField, Button, Box } from "@mui/material";
 
 function LinkedAccountsModalContent({ onSubmit, onCancel }) {
 	const [linkedAccountData, setLinkedAccountData] = useState({
-		hostDomain: "",
-		hostUsername: "",
+		domain: "",
+		userName: "",
 		apiKey: "",
 	});
 
@@ -22,18 +22,18 @@ function LinkedAccountsModalContent({ onSubmit, onCancel }) {
 		<Box component="form" onSubmit={handleSubmit}>
 			<Typography variant="h6">Link a New Account</Typography>
 			<TextField
-				name="hostDomain"
+				name="domain"
 				label="Host Domain"
 				fullWidth
-				value={linkedAccountData.hostDomain}
+				value={linkedAccountData.domain}
 				onChange={handleChange}
 				sx={{ mb: 2 }}
 			/>
 			<TextField
-				name="hostUsername"
+				name="userName"
 				label="Host Username"
 				fullWidth
-				value={linkedAccountData.hostUsername}
+				value={linkedAccountData.userName}
 				onChange={handleChange}
 				sx={{ mb: 2 }}
 			/>

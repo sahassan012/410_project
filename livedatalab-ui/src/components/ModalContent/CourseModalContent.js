@@ -10,8 +10,8 @@ import {
 
 function CourseModalContent({ onSubmit }) {
 	const [courseData, setCourseData] = useState({
-		courseName: "",
-		courseDescription: "",
+		name: "",
+		description: "",
 		makePublic: false,
 	});
 
@@ -35,20 +35,20 @@ function CourseModalContent({ onSubmit }) {
 				Create a New Course
 			</Typography>
 			<TextField
-				name="courseName"
+				name="name"
 				label="Course Name"
 				fullWidth
-				value={courseData.courseName}
+				value={courseData.name}
 				onChange={handleInputChange}
 				sx={{ mb: 2 }}
 			/>
 			<TextField
-				name="courseDescription"
+				name="description"
 				label="Course Description"
 				fullWidth
 				multiline
 				rows={3}
-				value={courseData.courseDescription}
+				value={courseData.description}
 				onChange={handleInputChange}
 				sx={{ mb: 2 }}
 			/>

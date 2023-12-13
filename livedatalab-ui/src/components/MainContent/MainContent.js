@@ -33,9 +33,9 @@ import LeaderboardModalContent from "../ModalContent/LeaderboardModalContent";
 function MainContent({ activeSection }) {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [projects, setProjects] = useState(mockProjects);
-	const [courses, setCourses] = useState([]);
-	const [linkedAccounts, setLinkedAccounts] = useState([]);
-	const [leaderboard, setLeaderboard] = useState([]);
+	const [courses, setCourses] = useState(mockCourses);
+	const [linkedAccounts, setLinkedAccounts] = useState(mockLinkedAccounts);
+	const [leaderboard, setLeaderboard] = useState(mockLeaderboard);
 
 	const handleProjectSubmit = (projectData) => {
 		setProjects((prevProjects) => [
@@ -45,18 +45,18 @@ function MainContent({ activeSection }) {
 		setModalOpen(false);
 	};
 
-	const handleCourseSubmit = (courseData) => {
-		setCourses((prevCourses) => [
-			...prevCourses,
-			{ id: prevCourses.length + 1, ...courseData },
-		]);
-		setModalOpen(false);
-	};
-
 	const handleLeaderboardSubmit = (leaderboardData) => {
 		setLeaderboard((prevLeaderboard) => [
 			...prevLeaderboard,
 			{ id: prevLeaderboard.length + 1, ...leaderboardData },
+		]);
+		setModalOpen(false);
+	};
+
+	const handleCourseSubmit = (courseData) => {
+		setCourses((prevCourses) => [
+			...prevCourses,
+			{ id: prevCourses.length + 1, ...courseData },
 		]);
 		setModalOpen(false);
 	};
@@ -116,11 +116,11 @@ function MainContent({ activeSection }) {
 							Leaderboard
 						</Typography>
 						<List>
-							{mockLeaderboard.map((entry) => (
+							{leaderboard.map((entry) => (
 								<ListItem key={entry.id}>
 									<ListItemText
-										primary={entry.user}
-										secondary={`Score: ${entry.score}`}
+										primary={entry.description}
+										secondary={`Score: ${entry.maxScore}`}
 									/>
 								</ListItem>
 							))}
@@ -145,7 +145,7 @@ function MainContent({ activeSection }) {
 							Courses
 						</Typography>
 						<List>
-							{mockCourses.map((course) => (
+							{courses.map((course) => (
 								<ListItem key={course.id}>
 									<ListItemText
 										primary={course.name}
@@ -218,9 +218,9 @@ function MainContent({ activeSection }) {
 							Manage New Linked Accounts
 						</Typography>
 						<List>
-							{mockLinkedAccounts.map((acc) => (
+							{linkedAccounts.map((acc) => (
 								<ListItem key={acc.id}>
-									<ListItemText primary={acc.user} secondary={acc.github} />
+									<ListItemText primary={acc.userName} secondary={acc.domain} />
 								</ListItem>
 							))}
 						</List>
