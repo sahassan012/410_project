@@ -38,32 +38,33 @@ function MainContent({ activeSection }) {
 	const [leaderboard, setLeaderboard] = useState([]);
 
 	const handleProjectSubmit = (projectData) => {
-		setProjects([...projects, { ...projectData, id: projects.length + 1 }]);
+		setProjects((prevProjects) => [
+			...prevProjects,
+			{ id: prevProjects.length + 1, ...projectData },
+		]);
 		setModalOpen(false);
 	};
 
 	const handleCourseSubmit = (courseData) => {
 		setCourses((prevCourses) => [
 			...prevCourses,
-			{
-				...courseData,
-				id: prevCourses.length + 1,
-			},
+			{ id: prevCourses.length + 1, ...courseData },
 		]);
 		setModalOpen(false);
 	};
 
 	const handleLeaderboardSubmit = (leaderboardData) => {
-		setLeaderboard([
-			...leaderboard,
-			{ ...leaderboardData, id: leaderboard.length + 1 },
+		setLeaderboard((prevLeaderboard) => [
+			...prevLeaderboard,
+			{ id: prevLeaderboard.length + 1, ...leaderboardData },
 		]);
 		setModalOpen(false);
 	};
+
 	const handleLinkedAccountsSubmit = (linkedAccountData) => {
-		setLinkedAccounts([
-			...linkedAccounts,
-			{ ...linkedAccountData, id: linkedAccounts.length + 1 },
+		setLinkedAccounts((prevAccounts) => [
+			...prevAccounts,
+			{ id: prevAccounts.length + 1, ...linkedAccountData },
 		]);
 		setModalOpen(false);
 	};
@@ -170,15 +171,21 @@ function MainContent({ activeSection }) {
 				<Card variant="outlined">
 					<CardContent>
 						<Typography variant="h5" component="h2">
-							Courses
+							Submissions
 						</Typography>
 						<TableContainer component={Paper}>
 							<Table sx={{ minWidth: 650 }} aria-label="simple table">
 								<TableHead>
 									<TableRow>
-										<TableCell>GitHub URL</TableCell>
-										<TableCell align="right">Submission Number</TableCell>
-										<TableCell align="right">Timestamp</TableCell>
+										<TableCell>
+											<b>GitHub URL</b>
+										</TableCell>
+										<TableCell align="right">
+											<b>Submission Number</b>
+										</TableCell>
+										<TableCell align="right">
+											<b>Timestamp</b>
+										</TableCell>
 									</TableRow>
 								</TableHead>
 								<TableBody>
@@ -204,32 +211,6 @@ function MainContent({ activeSection }) {
 			);
 			break;
 		case "manage linked accounts":
-			content = (
-				<Card variant="outlined">
-					<CardContent>
-						<Typography variant="h5" component="h2">
-							Manage New Linked Accounts
-						</Typography>
-						<List>
-							{mockLinkedAccounts.map((acc) => (
-								<ListItem key={acc.id}>
-									<ListItemText primary={acc.user} secondary={acc.github} />
-								</ListItem>
-							))}
-						</List>
-						<Button
-							variant="contained"
-							color="primary"
-							onClick={handleOpenModal}
-							sx={{ mt: 2 }}
-						>
-							Link New Account
-						</Button>
-					</CardContent>
-				</Card>
-			);
-
-		default:
 			content = (
 				<Card variant="outlined">
 					<CardContent>
