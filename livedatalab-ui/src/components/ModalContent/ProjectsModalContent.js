@@ -14,17 +14,17 @@ import {
 
 function ProjectModalContent({ onSubmit }) {
 	const [projectData, setProjectData] = useState({
-		projectName: "",
-		projectDescription: "",
-		projectReadme: null,
-		projectStarterFiles: null,
+		name: "",
+		description: "",
+		readme: null,
+		starterFiles: null,
 		course: "",
 		autoRecommend: false,
 	});
 
 	const handleInputChange = (event) => {
 		const { name, value, files } = event.target;
-		if (name === "projectReadme" || name === "projectStarterFiles") {
+		if (name === "readme" || name === "starterFiles") {
 			setProjectData({ ...projectData, [name]: files[0] });
 		} else {
 			setProjectData({ ...projectData, [name]: value });
@@ -46,31 +46,26 @@ function ProjectModalContent({ onSubmit }) {
 				Create a New Project
 			</Typography>
 			<TextField
-				name="projectName"
+				name="name"
 				label="Project Name"
 				fullWidth
-				value={projectData.projectName}
+				value={projectData.name}
 				onChange={handleInputChange}
 				sx={{ mb: 2 }}
 			/>
 			<TextField
-				name="projectDescription"
+				name="description"
 				label="Short Description"
 				fullWidth
 				multiline
 				rows={2}
-				value={projectData.projectDescription}
+				value={projectData.description}
 				onChange={handleInputChange}
 				sx={{ mb: 2 }}
 			/>
 			<Button variant="contained" component="label" sx={{ mb: 2 }}>
 				Project README
-				<input
-					type="file"
-					hidden
-					onChange={handleInputChange}
-					name="projectReadme"
-				/>
+				<input type="file" hidden onChange={handleInputChange} name="readme" />
 			</Button>
 			<Button variant="contained" component="label" sx={{ mb: 2 }}>
 				Project Starter Files (.zip only)
@@ -79,7 +74,7 @@ function ProjectModalContent({ onSubmit }) {
 					hidden
 					accept=".zip"
 					onChange={handleInputChange}
-					name="projectStarterFiles"
+					name="starterFiles"
 				/>
 			</Button>
 			<FormControl fullWidth sx={{ mb: 2 }}>

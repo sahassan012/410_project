@@ -38,10 +38,12 @@ function MainContent({ activeSection }) {
 	const [leaderboard, setLeaderboard] = useState([]);
 
 	const handleProjectSubmit = (projectData) => {
+		console.log(projectData);
 		setProjects((prevProjects) => [
 			...prevProjects,
 			{ id: prevProjects.length + 1, ...projectData },
 		]);
+		console.log(projects);
 		setModalOpen(false);
 	};
 
