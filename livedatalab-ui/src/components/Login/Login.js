@@ -3,6 +3,7 @@ import { Button, TextField } from "@mui/material";
 import { authenticateUser } from "../../utils/mockData";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import InsightsIcon from "@mui/icons-material/Insights";
 
 function Login(props) {
 	const [username, setUsername] = useState("");
@@ -32,6 +33,10 @@ function Login(props) {
 
 	return (
 		<div className="login-container">
+			<div className="login-logo">
+				<InsightsIcon style={{ fontSize: 90, color: "#1976d2" }} />
+				<span className="login-logo-text">LiveDataLab</span>
+			</div>
 			<form onSubmit={handleSubmit} className="login-form">
 				<TextField
 					label="Username"

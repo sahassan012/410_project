@@ -9,7 +9,7 @@ import {
 	Menu,
 	MenuItem,
 } from "@mui/material";
-import logo from "../../assets/logo.png";
+import InsightsIcon from "@mui/icons-material/Insights";
 
 function Navbar({ setActiveSection }) {
 	const navigate = useNavigate();
@@ -21,15 +21,12 @@ function Navbar({ setActiveSection }) {
 	return (
 		<AppBar position="static">
 			<Toolbar>
-				<IconButton
-					edge="start"
-					color="inherit"
-					aria-label="menu"
-					sx={{ mr: 2 }}
+				<InsightsIcon style={{ fontSize: 50, color: "inherit" }} />
+
+				<Typography
+					variant="h5"
+					style={{ flexGrow: 1, marginLeft: 5, fontWeight: 800 }}
 				>
-					<img src={logo} alt="LiveDataLab Logo" style={{ width: "50px" }} />{" "}
-				</IconButton>
-				<Typography variant="h6" style={{ flexGrow: 1 }}>
 					LiveDataLab
 				</Typography>
 				<Button color="inherit" onClick={() => setActiveSection("projects")}>
