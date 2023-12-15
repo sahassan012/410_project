@@ -1,5 +1,5 @@
 # LiveDataLab UI
-Presentation Link: https://drive.google.com/file/d/1ZHC6DvR1YD28xmmqTzR1XN1bKm9OSJPr/view?usp=sharing
+Presentation Link: https://youtu.be/1gy6fUjuPVw
 ## Overview
 
 LiveDataLab is an application that was created for managing educational projects, courses, and students' submissions. It offers a system for handling user authentication, project management, leaderboard tracking, course management, and accounts linked to github.
