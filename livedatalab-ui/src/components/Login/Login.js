@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, TextField, Link, Typography } from "@mui/material";
-import { authenticateUser } from "../../utils/mockData";
+import { authenticateUser, addUser } from "../../utils/mockData";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import InsightsIcon from "@mui/icons-material/Insights";
@@ -45,6 +45,7 @@ function Login(props) {
 			}
 		} else if (mode === "forgotPassword") {
 		} else if (mode === "signUp") {
+			addUser(credentials.username, credentials.password);
 			navigate("/home");
 		}
 	};
