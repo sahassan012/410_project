@@ -30,3 +30,4 @@ LiveDataLab is an application that was created for managing educational projects
 
 ## Setup and Installation
 Run 'npm install' and then 'npm start' from the livedatalab-ui directory
+(see README in livedatalab-ui directory for more instructions)
