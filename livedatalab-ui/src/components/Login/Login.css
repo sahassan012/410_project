@@ -29,7 +29,11 @@
 	margin-top: 10px;
 }
 
+.forgot-password-link {
+	padding-bottom: 10px;
+}
 .forgot-password-link,
 .register-link {
+	margin-top: 5px;
 	text-align: center;
 }

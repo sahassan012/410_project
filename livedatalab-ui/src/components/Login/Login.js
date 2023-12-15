@@ -9,12 +9,14 @@ function Login(props) {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [errors, setErrors] = useState({});
+	const [loginError, setLoginError] = useState("");
 	const navigate = useNavigate();
 
 	const validateForm = () => {
 		let tempErrors = {};
 		tempErrors.username = username ? "" : "Username is required.";
 		tempErrors.password = password ? "" : "Password is required.";
+		setLoginError("");
 		return tempErrors;
 	};
 
@@ -27,6 +29,7 @@ function Login(props) {
 				navigate("/home");
 			} else {
 				//login failure
+				setLoginError("Invalid username or password.");
 			}
 		}
 	};
@@ -67,13 +70,15 @@ function Login(props) {
 				>
 					Login
 				</Button>
-
-				<Link href="#" variant="body2" className="forgot-password-link">
-					Forgot your password?
-				</Link>
-				<Link href="#" variant="body2" className="register-link">
-					Don't have an account? Sign up
-				</Link>
+				{loginError && <Typography color="error">{loginError}</Typography>}
+				<div className="login-links">
+					<Link href="#" variant="body2" className="forgot-password-link">
+						Forgot your password?
+					</Link>
+					<Link href="#" variant="body2" className="register-link">
+						Don't have an account? Sign up
+					</Link>
+				</div>
 			</form>
 		</div>
 	);
