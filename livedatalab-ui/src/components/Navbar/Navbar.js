@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
 	AppBar,
 	Toolbar,
@@ -10,7 +11,13 @@ import {
 } from "@mui/material";
 import logo from "../../assets/logo.png";
 
-function Navbar() {
+function Navbar({ setActiveSection }) {
+	const navigate = useNavigate();
+
+	const handleLogout = () => {
+		navigate("/");
+	};
+
 	return (
 		<AppBar position="static">
 			<Toolbar>
@@ -25,10 +32,12 @@ function Navbar() {
 				<Typography variant="h6" style={{ flexGrow: 1 }}>
 					LiveDataLab
 				</Typography>
-				<Button color="inherit" to="/home">
+				<Button color="inherit" onClick={() => setActiveSection("projects")}>
 					Home
 				</Button>
-				<Button color="inherit">Log Out</Button>
+				<Button color="inherit" onClick={handleLogout}>
+					Log Out
+				</Button>
 			</Toolbar>
 		</AppBar>
 	);

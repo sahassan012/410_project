@@ -9,7 +9,7 @@ function Layout() {
 
 	return (
 		<div>
-			<Navbar />
+			<Navbar setActiveSection={setActiveSection} />
 			<Grid container spacing={10}>
 				<Grid item xs={2}>
 					<SecondaryNav setActiveSection={setActiveSection} />
