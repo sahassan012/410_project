@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Button, TextField, Link, Typography } from "@mui/material";
-import { authenticateUser, addUser } from "../../utils/mockData";
+import {
+	authenticateUser,
+	addUser,
+	setCurrentUser,
+} from "../../utils/mockData";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import InsightsIcon from "@mui/icons-material/Insights";
@@ -38,6 +42,7 @@ function Login(props) {
 		if (mode === "login") {
 			if (!Object.values(formErrors).some((error) => error)) {
 				if (authenticateUser(credentials.username, credentials.password)) {
+					setCurrentUser(credentials.username);
 					navigate("/home");
 				} else {
 					setLoginError("Invalid username or password.");
@@ -46,6 +51,7 @@ function Login(props) {
 		} else if (mode === "forgotPassword") {
 		} else if (mode === "signUp") {
 			addUser(credentials.username, credentials.password);
+			setCurrentUser(credentials.username);
 			navigate("/home");
 		}
 	};

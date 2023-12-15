@@ -10,8 +10,10 @@ import {
 	MenuItem,
 } from "@mui/material";
 import InsightsIcon from "@mui/icons-material/Insights";
+import { getCurrentUser } from "../../utils/mockData";
 
 function Navbar({ setActiveSection }) {
+	const username = getCurrentUser();
 	const navigate = useNavigate();
 
 	const handleLogout = () => {
@@ -32,9 +34,16 @@ function Navbar({ setActiveSection }) {
 				<Button color="inherit" onClick={() => setActiveSection("projects")}>
 					Home
 				</Button>
-				<Button color="inherit" onClick={handleLogout}>
+				<Button
+					color="inherit"
+					style={{ marginRight: 5 }}
+					onClick={handleLogout}
+				>
 					Log Out
 				</Button>
+				<Typography style={{ marginRight: 20, fontWeight: 600 }}>
+					{username}
+				</Typography>
 			</Toolbar>
 		</AppBar>
 	);
