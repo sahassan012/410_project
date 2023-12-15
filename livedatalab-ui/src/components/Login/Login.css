@@ -37,3 +37,11 @@
 	margin-top: 5px;
 	text-align: center;
 }
+
+.login-button {
+	width: 100%;
+}
+.back-to-login-button {
+	padding-top: 20px;
+	width: 100%;
+}

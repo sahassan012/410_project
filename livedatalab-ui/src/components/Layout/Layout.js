@@ -5,7 +5,7 @@ import SecondaryNav from "../SecondaryNav/SecondaryNav";
 import { Grid } from "@mui/material";
 
 function Layout() {
-	const [activeSection, setActiveSection] = useState("projects"); // Default to 'projects'
+	const [activeSection, setActiveSection] = useState("projects");
 
 	return (
 		<div>
