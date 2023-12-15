@@ -119,9 +119,11 @@ const DetailModal = ({ open, onClose, item, type }) => {
 	} else if (type === "submissions") {
 		content = (
 			<Box sx={modalStyle}>
-				<Typography variant="h6" component="h2">
-					{item.name}
+				<Typography component="h2">
+					Repository URL: {item.githubRepo}
 				</Typography>
+				<Typography>Submission #: {item.submissionNumber}</Typography>
+				<Typography>Time: {item.time}</Typography>
 				<Typography sx={{ mt: 2 }}>{item.description}</Typography>
 				<Box display="flex" justifyContent="space-between" mt={2}>
 					<Button variant="outlined" color="secondary" onClick={onClose}>
