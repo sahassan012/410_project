@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Link, Typography } from "@mui/material";
 import { authenticateUser } from "../../utils/mockData";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
@@ -44,6 +44,9 @@ function Login(props) {
 					value={username}
 					onChange={(e) => setUsername(e.target.value)}
 					required
+					error={!!errors.username}
+					helperText={errors.username}
+					className="login-input"
 				/>
 				<TextField
 					label="Password"
@@ -52,10 +55,25 @@ function Login(props) {
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 					required
+					error={!!errors.password}
+					helperText={errors.password}
+					className="login-input"
 				/>
-				<Button type="submit" variant="contained" color="primary">
+				<Button
+					type="submit"
+					variant="contained"
+					color="primary"
+					className="login-button"
+				>
 					Login
 				</Button>
+
+				<Link href="#" variant="body2" className="forgot-password-link">
+					Forgot your password?
+				</Link>
+				<Link href="#" variant="body2" className="register-link">
+					Don't have an account? Sign up
+				</Link>
 			</form>
 		</div>
 	);
