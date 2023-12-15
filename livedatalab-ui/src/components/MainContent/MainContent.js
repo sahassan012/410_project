@@ -29,6 +29,9 @@ import ProjectsModalContent from "../ModalContent/ProjectsModalContent";
 import CourseModalContent from "../ModalContent/CourseModalContent";
 import LinkedAccountsModalContent from "../ModalContent/LinkedAccountsModalContent";
 import LeaderboardModalContent from "../ModalContent/LeaderboardModalContent";
+import DeleteModalContent from "../ModalContent/DeleteModalContent";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
 
 function MainContent({ activeSection }) {
 	const [modalOpen, setModalOpen] = useState(false);
@@ -36,6 +39,7 @@ function MainContent({ activeSection }) {
 	const [courses, setCourses] = useState(mockCourses);
 	const [linkedAccounts, setLinkedAccounts] = useState(mockLinkedAccounts);
 	const [leaderboard, setLeaderboard] = useState(mockLeaderboard);
+	const [deleteRequest, setDeleteRequest] = useState({ type: null, id: null });
 
 	const handleProjectSubmit = (projectData) => {
 		setProjects((prevProjects) => [
@@ -69,6 +73,28 @@ function MainContent({ activeSection }) {
 		setModalOpen(false);
 	};
 
+	const handleDeleteRequest = (type, id) => {
+		setDeleteRequest({ type, id });
+		console.log("Deleteing " + type + " with id " + id);
+	};
+	const handleConfirmDelete = () => {
+		const { type, id } = deleteRequest;
+
+		if (type === "project") {
+			setProjects((prevProjects) =>
+				prevProjects.filter((project) => project.id !== id)
+			);
+		} else if (type === "course") {
+			setCourses((prevCourses) =>
+				prevCourses.filter((course) => course.id !== id)
+			);
+		} else if (type === "account") {
+			setLinkedAccounts((prevAccounts) =>
+				prevAccounts.filter((account) => account.id !== id)
+			);
+		}
+		setDeleteRequest({ type: null, id: null });
+	};
 	const handleOpenModal = () => {
 		setModalOpen(true);
 	};
@@ -93,6 +119,11 @@ function MainContent({ activeSection }) {
 										primary={project.name}
 										secondary={project.description}
 									/>
+									<IconButton
+										onClick={() => handleDeleteRequest("project", project.id)}
+									>
+										<DeleteIcon />
+									</IconButton>
 								</ListItem>
 							))}
 						</List>
@@ -151,6 +182,11 @@ function MainContent({ activeSection }) {
 										primary={course.name}
 										secondary={course.description}
 									/>
+									<IconButton
+										onClick={() => handleDeleteRequest("course", course.id)}
+									>
+										<DeleteIcon />
+									</IconButton>
 								</ListItem>
 							))}
 						</List>
@@ -221,6 +257,11 @@ function MainContent({ activeSection }) {
 							{linkedAccounts.map((acc) => (
 								<ListItem key={acc.id}>
 									<ListItemText primary={acc.userName} secondary={acc.domain} />
+									<IconButton
+										onClick={() => handleDeleteRequest("account", acc.id)}
+									>
+										<DeleteIcon />
+									</IconButton>
 								</ListItem>
 							))}
 						</List>
@@ -288,6 +329,19 @@ function MainContent({ activeSection }) {
 					}
 				/>
 			)}
+			<DeleteModalContent
+				open={deleteRequest.type !== null}
+				onClose={() => setDeleteRequest({ type: null, id: null })}
+				onDelete={handleConfirmDelete}
+				deleteRequest={deleteRequest}
+				itemType={
+					activeSection === "projects"
+						? "project"
+						: activeSection === "courses"
+						? "course"
+						: "account"
+				}
+			/>
 		</main>
 	);
 }
