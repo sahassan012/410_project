@@ -32,7 +32,7 @@ function CourseModalContent({ onSubmit, onCancel }) {
 	return (
 		<Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit}>
 			<Typography id="modal-title" variant="h6" component="h2" sx={{ mb: 2 }}>
-				Create a New Course
+				Add New Course
 			</Typography>
 			<TextField
 				name="name"

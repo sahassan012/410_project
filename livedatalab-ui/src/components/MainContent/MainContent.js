@@ -9,6 +9,7 @@ import {
 	ListItemText,
 } from "@mui/material";
 import GenModal from "../GenModal/GenModal";
+import DetailModal from "../ModalContent/DetailModal";
 import {
 	Table,
 	TableBody,
@@ -18,6 +19,7 @@ import {
 	TableRow,
 	Paper,
 } from "@mui/material";
+import "./MainContent.css";
 import {
 	mockProjects,
 	mockCourses,
@@ -40,6 +42,8 @@ function MainContent({ activeSection }) {
 	const [linkedAccounts, setLinkedAccounts] = useState(mockLinkedAccounts);
 	const [leaderboard, setLeaderboard] = useState(mockLeaderboard);
 	const [deleteRequest, setDeleteRequest] = useState({ type: null, id: null });
+	const [selectedItem, setSelectedItem] = useState(null);
+	const [detailModalOpen, setDetailModalOpen] = useState(false); // Add this for DetailModal
 
 	const handleProjectSubmit = (projectData) => {
 		setProjects((prevProjects) => [
@@ -103,6 +107,15 @@ function MainContent({ activeSection }) {
 		setModalOpen(false);
 	};
 
+	const handleItemClick = (item) => {
+		setSelectedItem(item);
+		setDetailModalOpen(true);
+	};
+	const handleCloseDetailModal = () => {
+		setDetailModalOpen(false);
+		setSelectedItem(null);
+	};
+
 	let content;
 	switch (activeSection) {
 		case "projects":
@@ -114,7 +127,11 @@ function MainContent({ activeSection }) {
 						</Typography>
 						<List>
 							{projects.map((project) => (
-								<ListItem key={project.id}>
+								<ListItem
+									className="content-list-items"
+									key={project.id}
+									onClick={() => handleItemClick(project)}
+								>
 									<ListItemText
 										primary={project.name}
 										secondary={project.description}
@@ -133,7 +150,7 @@ function MainContent({ activeSection }) {
 							onClick={() => setModalOpen(true)}
 							sx={{ mt: 2 }}
 						>
-							Create New Project
+							Add New Project
 						</Button>
 					</CardContent>
 				</Card>
@@ -148,7 +165,11 @@ function MainContent({ activeSection }) {
 						</Typography>
 						<List>
 							{leaderboard.map((entry) => (
-								<ListItem key={entry.id}>
+								<ListItem
+									onClick={() => handleItemClick(entry)}
+									className="content-list-items"
+									key={entry.id}
+								>
 									<ListItemText
 										primary={entry.description}
 										secondary={`Score: ${entry.maxScore}`}
@@ -177,7 +198,11 @@ function MainContent({ activeSection }) {
 						</Typography>
 						<List>
 							{courses.map((course) => (
-								<ListItem key={course.id}>
+								<ListItem
+									onClick={() => handleItemClick(course)}
+									className="content-list-items"
+									key={course.id}
+								>
 									<ListItemText
 										primary={course.name}
 										secondary={course.description}
@@ -196,7 +221,7 @@ function MainContent({ activeSection }) {
 							onClick={handleOpenModal}
 							sx={{ mt: 2 }}
 						>
-							Create New Course
+							Add New Course
 						</Button>
 					</CardContent>
 				</Card>
@@ -227,6 +252,8 @@ function MainContent({ activeSection }) {
 								<TableBody>
 									{mockSubmissions.map((submission) => (
 										<TableRow
+											onClick={() => handleItemClick(submission)}
+											className="content-list-items"
 											key={submission.id}
 											sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
 										>
@@ -255,7 +282,11 @@ function MainContent({ activeSection }) {
 						</Typography>
 						<List>
 							{linkedAccounts.map((acc) => (
-								<ListItem key={acc.id}>
+								<ListItem
+									onClick={() => handleItemClick(acc)}
+									className="content-list-items"
+									key={acc.id}
+								>
 									<ListItemText primary={acc.userName} secondary={acc.domain} />
 									<IconButton
 										onClick={() => handleDeleteRequest("account", acc.id)}
@@ -271,7 +302,7 @@ function MainContent({ activeSection }) {
 							onClick={handleOpenModal}
 							sx={{ mt: 2 }}
 						>
-							Link New Account
+							Link a New Account
 						</Button>
 					</CardContent>
 				</Card>
@@ -342,6 +373,14 @@ function MainContent({ activeSection }) {
 						: "account"
 				}
 			/>
+			{selectedItem && (
+				<DetailModal
+					open={detailModalOpen}
+					onClose={handleCloseDetailModal}
+					item={selectedItem}
+					type={activeSection}
+				/>
+			)}
 		</main>
 	);
 }

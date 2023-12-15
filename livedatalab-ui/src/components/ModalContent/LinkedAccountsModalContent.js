@@ -20,7 +20,7 @@ function LinkedAccountsModalContent({ onSubmit, onCancel }) {
 
 	return (
 		<Box component="form" onSubmit={handleSubmit}>
-			<Typography variant="h6">Link a New Account</Typography>
+			<Typography variant="h6">Add New Account</Typography>
 			<TextField
 				name="domain"
 				label="Host Domain"

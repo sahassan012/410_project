@@ -1,0 +1,8 @@
+.content-list-items {
+	cursor: pointer;
+}
+
+.content-list-items:hover {
+	background: #1976d22c;
+	border-radius: 10px;
+}
