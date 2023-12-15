@@ -105,9 +105,10 @@ const DetailModal = ({ open, onClose, item, type }) => {
 		content = (
 			<Box sx={modalStyle}>
 				<Typography variant="h6" component="h2">
-					{item.name}
+					{item.userName}
 				</Typography>
-				<Typography sx={{ mt: 2 }}>{item.description}</Typography>
+				<Typography sx={{ mt: 2 }}>Domain: {item.domain}</Typography>
+				<Typography sx={{ mt: 2 }}>API Key: {item.apiKey}</Typography>
 				<Box display="flex" justifyContent="space-between" mt={2}>
 					<Button variant="outlined" color="secondary" onClick={onClose}>
 						Close
